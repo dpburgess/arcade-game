@@ -121,6 +121,8 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+//compares the boundry of the player to each enemy to see if a collision occured.
+//did most of this on my own, but also got assistance from a MDN post
 var checkCollisions = function(){
     for(var i = 0; i < allEnemies.length; i++){
         if(player.y === Math.floor(allEnemies[i].y)){
