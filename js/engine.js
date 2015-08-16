@@ -80,7 +80,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -135,7 +135,10 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
+        //ctx.fillStyle = "#FF0000";
+        //ctx.fillRect(420,55,60,70)
+        ctx.font = "30px Arial";
+        ctx.fillText("0", 420, 50);
 
         renderEntities();
     }
@@ -153,6 +156,9 @@ var Engine = (function(global) {
         });
 
         player.render();
+        if (player.y === 53) {
+            setTimeout(player.reset(),1000);
+        }
     }
 
     /* This function does nothing but it could have been a good place to
@@ -160,7 +166,7 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -182,3 +188,4 @@ var Engine = (function(global) {
      */
     global.ctx = ctx;
 })(this);
+
