@@ -54,6 +54,7 @@ var Player = function(x, y) {
     this.sprite = 'images/char-boy.png';
 };
 
+//sends the player back to the starting position
 Player.prototype.reset = function() {
     this.x = 200;
     this.y = 385;
@@ -64,6 +65,7 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+//moves the player but keeps them from going off the game board
 Player.prototype.handleInput = function(keyCode) {
     switch (keyCode) {
         case "left":
@@ -93,24 +95,17 @@ Player.prototype.update = function(dt){
 
 };
 
-Player.prototype.score = function(){
-    var ctxx = canvas.getContext("2d");
-        ctxx.fillStyle = "blue";
-        ctxx.beginPath()
-        ctxx.moveTo(100, 100);
-        ctxx.LineTo(250, 250);
-        ctxx.fill();
-};
-
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
 var enemy1 = new Enemy(-100, 60, 75);
 var enemy2 = new Enemy(-100, 219, 50);
-var enemy3 = new Enemy(-100, 136, 100);
+var enemy3 = new Enemy(-150, 136, 100);
+var enemy4 = new Enemy(-150, 136, 200);
+var enemy5 = new Enemy(-75, 219, 150);
 
-var allEnemies = [enemy1, enemy2, enemy3];
+var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
 var player = new Player(200, 385);
 
 // This listens for key presses and sends the keys to your

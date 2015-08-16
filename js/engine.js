@@ -135,10 +135,6 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-        //ctx.fillStyle = "#FF0000";
-        //ctx.fillRect(420,55,60,70)
-        ctx.font = "30px Arial";
-        ctx.fillText("0", 420, 50);
 
         renderEntities();
     }
