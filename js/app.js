@@ -1,8 +1,7 @@
-var rightEdge = 400;
-var leftEdge = 0;
-var topEdge = 70;
-var bottomEdge = 385;
-var victoryLine = 60;
+var RIGHT_EDGE = 400;
+var LEFT_EDGE = 0;
+var TOP_EDGE = 70;
+var BOTTOM_EDGE = 385;
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
@@ -14,13 +13,8 @@ var Enemy = function(x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    //var obj = Object.create(Enemy.prototype);
-    //obj.update = Enemy.prototype.update;
-    //obj.render = Enemy.prototype.render;
-
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    //return obj;
 };
 
 // Update the enemy's position, required method for game
@@ -30,7 +24,7 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt;
     }else{
     this.x = -100;
-    };
+    }
 };
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
@@ -39,7 +33,7 @@ Enemy.prototype.update = function(dt) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -69,22 +63,22 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(keyCode) {
     switch (keyCode) {
         case "left":
-        if(this.x > leftEdge) {
+        if(this.x > LEFT_EDGE) {
             this.x = this.x - 100;
         }
             break;
         case "right":
-        if(this.x < rightEdge) {
+        if(this.x < RIGHT_EDGE) {
             this.x = this.x + 100;
         }
             break;
         case "up":
-        if(this.y > topEdge) {
+        if(this.y > TOP_EDGE) {
             this.y = this.y - 83;
         }
             break;
         case "down":
-        if(this.y < bottomEdge) {
+        if(this.y < BOTTOM_EDGE) {
             this.y = this.y + 83;
         }
             break;
