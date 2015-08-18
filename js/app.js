@@ -3,12 +3,20 @@ var LEFT_EDGE = 0;
 var TOP_EDGE = 70;
 var BOTTOM_EDGE = 385;
 
-// Enemies our player must avoid
-var Enemy = function(x, y, speed) {
+var baseCharacter = function(x, y) {
     this.x = x;
     this.y = y;
     this.width = 75;
     this.height = 75;
+};
+
+// Enemies our player must avoid
+var Enemy = function(x, y, speed) {
+    baseCharacter.call(this, x, y);
+    //this.x = x;
+    //this.y = y;
+    //this.width = 75;
+    //this.height = 75;
     this.speed = speed;
     this.sprite = 'images/enemy-bug.png';
     // Variables applied to each of our instances go here,
@@ -40,11 +48,11 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 
 var Player = function(x, y) {
-    this.x = x;
-    this.y = y;
-    this.width = 75;
-    this.height = 75;
-    this.score = 0;
+    baseCharacter.call(this, x, y);
+    //this.x = x;
+    //this.y = y;
+    //this.width = 75;
+    //this.height = 75;
     this.sprite = 'images/char-boy.png';
 };
 
