@@ -3,6 +3,7 @@ var LEFT_EDGE = 0;
 var TOP_EDGE = 70;
 var BOTTOM_EDGE = 385;
 
+//creating a parent class that Enemy and Player will use
 var baseCharacter = function(x, y) {
     this.x = x;
     this.y = y;
@@ -10,13 +11,13 @@ var baseCharacter = function(x, y) {
     this.height = 75;
 };
 
+baseCharacter.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     baseCharacter.call(this, x, y);
-    //this.x = x;
-    //this.y = y;
-    //this.width = 75;
-    //this.height = 75;
     this.speed = speed;
     this.sprite = 'images/enemy-bug.png';
     // Variables applied to each of our instances go here,
@@ -25,22 +26,20 @@ var Enemy = function(x, y, speed) {
     // a helper we've provided to easily load images
 };
 
+Enemy.prototype = Object.create(baseCharacter.prototype);
+Enemy.prototype.constructor = Enemy;
+
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
+// You should multiply any movement by the dt parameter
+// which will ensure the game runs at the same speed for
+// all computers.
 Enemy.prototype.update = function(dt) {
     if (this.x < 504) {
     this.x += this.speed * dt;
     }else{
     this.x = -100;
     }
-};
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Now write your own player class
@@ -49,22 +48,16 @@ Enemy.prototype.render = function() {
 
 var Player = function(x, y) {
     baseCharacter.call(this, x, y);
-    //this.x = x;
-    //this.y = y;
-    //this.width = 75;
-    //this.height = 75;
     this.sprite = 'images/char-boy.png';
 };
+
+Player.prototype = Object.create(baseCharacter.prototype);
+Player.prototype.constructor = Player;
 
 //sends the player back to the starting position
 Player.prototype.reset = function() {
     this.x = 200;
     this.y = 385;
-};
-
-
-Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 //moves the player but keeps them from going off the game board
